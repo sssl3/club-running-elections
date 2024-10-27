@@ -3,6 +3,7 @@ import json
 import sys
 from counter import *
 from vote_ingestion import *
+from offices import OFFICES
 
 valid_sheet_settings = ['public', 'private']
 
@@ -53,6 +54,9 @@ class Voting:
         if hasattr(args, 'url') and hasattr(args, 'position') and hasattr(args, 'sheet_setting'):
             if args.sheet_setting not in valid_sheet_settings :
                 print("Invalid 'sheet_setting'. Choose from:", valid_sheet_settings)
+                sys.exit(1)
+            if args.position not in OFFICES :
+                print("Invalid 'position'. Choose from:", list(OFFICES.keys()))
                 sys.exit(1)
             self.url = args.url
             self.position = args.position
