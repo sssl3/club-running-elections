@@ -50,16 +50,21 @@ class Voting:
             print("Missing config file argument. Use --conf or -c with a JSON file.")
             sys.exit(1)
 
-        if hasattr(args, 'url') and hasattr(args, 'candidates_to_drop') and hasattr(args, 'position') and hasattr(args, 'sheet_setting'):
+        if hasattr(args, 'url') and hasattr(args, 'position') and hasattr(args, 'sheet_setting'):
             if args.sheet_setting not in valid_sheet_settings :
                 print("Invalid 'sheet_setting'. Choose from:", valid_sheet_settings)
                 sys.exit(1)
             self.url = args.url
-            self.candidates_to_drop = args.candidates_to_drop
             self.position = args.position
             self.sheet_setting = args.sheet_setting
-            if hasattr(args, 'keyfile'):
-                self.keyfile = args.keyfile
+            if self.sheet_setting == 'private':
+                if args.keyfile != "":
+                    self.keyfile = args.keyfile
+                else:
+                    print("""Missing keyfile path associated with service account. Please update the config file or select "public" option for "sheet_setting" parameter.""")
+                    sys.exit(1)
+            if hasattr(args, 'candidates_to_drop'):
+                    self.candidates_to_drop = args.candidates_to_drop
             return self
         else:
             print("Missing at least one input argument.")
