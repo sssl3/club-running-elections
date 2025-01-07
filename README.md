@@ -25,7 +25,10 @@ The configuration file should contain the following parameters:
 
 * `"url"`: The URL of the spreadsheet containing the ballots. (Required)
 * `"candidates_to_drop"`: The list of candidates to be excluded during the tallying process. (Optional)
+     - Should be formatted as a list of strings that exactly match the name of the candidate(s) on the ballot.
 * `"position"`: The position for which the votes are being counted for. (Required)
+     - `"president"`, `"vice_president"`, `"treasurer"`, `"mens_workout_coordinator"`, `"womens_workout_coordinator"`, `"sprint_coordinator"`, `"meet_coordinator"`, `"mens_social_chair"`, `"womens_social_chair"`, `"secretary"`, `"fundraising_chair"`, `"webmaster"`, `"mens_recruitment_chair"`, `"womens_recruitment_chair"`, `"team_relations_chair"`
+     - All options return one winner except for `"meet_coordinator"` (two winners).
 * `"sheet_setting"`: Selection for whether spreadsheet containing ballots is publicly or privately accessible. (Required)
      - `"private"`, `"public"`
      - Selection of `"private"` option requires setup of Google Sheets API/service account.
